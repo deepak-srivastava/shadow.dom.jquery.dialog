@@ -15,6 +15,7 @@
 <body>
   <div id="sth" class="outer">Bob1 - going to change</div>
   <div id="dialog-1">Bob2 - going to change</div>
+  <div id="dialog-2">Bob3 - not a shadow root. Not going to change</div>
   <template id="nameTagTemplate">
     <style>
       .outer {
@@ -49,7 +50,9 @@
     </div>
   </template>
 
-  <button id="opener">Open Dialog</button>
+  <button id="opener-1">Open Dialog-1</button>
+
+  <button id="opener-2">Open Dialog-2</button>
 </body>
 <script>
   $(function() {
@@ -57,7 +60,7 @@
      $('div.outer').text('Bala, Kajan Bala');
 
      // changing shadow content & overriding the color again
-     document.querySelector('#dialog-1').innerHTML = '<span style="color: red">hurry</span>';
+     document.querySelector('#dialog-1').innerHTML = '<span style="color: red">dynamic shadow content</span>';
      //document.querySelector('#dialog-1').textContent = 'Shellie';
 
      // making shadow root & content
@@ -70,8 +73,15 @@
      $( "#dialog-1" ).dialog({
         autoOpen: false,  
      });
-     $( "#opener" ).click(function() {
+     $( "#opener-1" ).click(function() {
         $( "#dialog-1" ).dialog( "open" );
+     });
+
+     $( "#dialog-2" ).dialog({
+        autoOpen: false,  
+     });
+     $( "#opener-2" ).click(function() {
+        $( "#dialog-2" ).dialog( "open" );
      });
   });
 </script>
