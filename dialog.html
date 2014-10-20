@@ -8,13 +8,13 @@
 <script src="jquery/jquery-ui-1.9.0/ui/jquery-ui.js"></script>
   <style>
     .outer {
-      background: green;
+      background: gray;
     }
   </style>
 </head>
 <body>
-  <div id="sth" class="outer">Bob1</div>
-  <div id="dialog-1">Bob2</div>
+  <div id="sth" class="outer">Bob1 - going to change</div>
+  <div id="dialog-1">Bob2 - going to change</div>
   <template id="nameTagTemplate">
     <style>
       .outer {
@@ -44,31 +44,29 @@
         Hi! My name is
       </div>
       <div class="name">
-        <!--
-        Kajan
-        -->
         <content></content>
       </div>
     </div>
   </template>
 
-  <!-- 
-  <div id="dialog-1" title="Dialog Title goes here...">This my first jQuery UI Dialog!</div>
-  -->
   <button id="opener">Open Dialog</button>
 </body>
 <script>
   $(function() {
+     // playing or changing divs
      $('div.outer').text('Bala, Kajan Bala');
-     //$('div.name').text('Bala, Kajan Bala');
-     //document.querySelector('#dialog-1').textContent = 'Shellie';
-     //document.querySelector('#dialog-1>.name').innerhtml = '<span>hurry</span>';
 
+     // changing shadow content & overriding the color again
+     document.querySelector('#dialog-1').innerHTML = '<span style="color: red">hurry</span>';
+     //document.querySelector('#dialog-1').textContent = 'Shellie';
+
+     // making shadow root & content
      var shadow   = document.querySelector('#dialog-1').createShadowRoot();
      var template = document.querySelector('#nameTagTemplate');
      var clone    = document.importNode(template.content, true);
      shadow.appendChild(clone);
 
+     // jquery dialog work
      $( "#dialog-1" ).dialog({
         autoOpen: false,  
      });
